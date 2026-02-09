@@ -1,5 +1,5 @@
 <?php
-  require_once "sql_source.php";
+  require_once "../sql/sql_bridge.php";
   
   create_account();
 
@@ -28,4 +28,5 @@
     header("Location: ../failure.html"); 
     exit;
   }
+
 ?>
