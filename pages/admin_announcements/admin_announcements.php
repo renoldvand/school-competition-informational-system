@@ -68,11 +68,11 @@
               <option value="comp">Siswa di Lomba Tertentu</option>
             </select>
           </div>
-          <div class="form-group" id="student_select_group" style="display:none;">
+          <div class="form-group" id="student_select_group">
             <label for="target_nis">Pilih Siswa</label>
             <select name="target_nis" id="target_nis"><?php echo $student_options; ?></select>
           </div>
-          <div class="form-group" id="comp_select_group" style="display:none;">
+          <div class="form-group" id="comp_select_group">
             <label for="target_comp">Pilih Lomba</label>
             <select name="target_comp" id="target_comp"><?php echo $comp_options; ?></select>
           </div>
@@ -85,6 +85,11 @@
           </div>
         </div>
       </form>
+      <script>
+        // Sembunyikan saat load (pakai inline style agar bisa di-removeProperty nanti)
+        document.getElementById('student_select_group').style.display = 'none';
+        document.getElementById('comp_select_group').style.display = 'none';
+      </script>
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
@@ -132,12 +137,17 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-      </form>
     <?php else: ?>
       <div class="empty-state"><p>Tidak ada pengumuman untuk periode ini.</p></div>
     <?php endif; ?>
   </div>
   <script>
+    function updateTargetUI() {
+      var v = document.getElementById('target').value;
+      document.getElementById('student_select_group').style.display = v === 'student' ? '' : 'none';
+      document.getElementById('comp_select_group').style.display = v === 'comp' ? '' : 'none';
+    }
+
     function toggleSelectAll(el) { var c=document.querySelectorAll('.row-check'); for(var i=0;i<c.length;i++) c[i].checked=el.checked; updateSelectedCount(); }
     function updateSelectedCount() {
       var n=document.querySelectorAll('.row-check:checked').length;
