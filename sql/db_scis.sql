@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2026 at 04:28 AM
+-- Generation Time: May 28, 2026 at 04:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,8 +105,7 @@ INSERT INTO `comps` (`id`, `title`, `major`, `description`, `overseer`, `thumbna
 (3, 'Festival Desain Grafis Digital', 'DKV', 'Festival desain grafis dengan tema \"Budaya Bali di Era Digital\". Peserta membuat poster digital dan identitas visual yang menggambarkan perpaduan budaya tradisional Bali dengan teknologi modern. Karya dinilai oleh dosen ISI Denpasar dan praktisi industri kreatif.', 'Pak Ketut Artana', NULL, NULL, '2026-05-05 14:14:08', '2026-04-01', '2026-04-20', 0),
 (4, 'Hackathon Nasional Pemuda Kreatif', 'RPL', 'Kompetisi pemrograman selama 24 jam untuk membuat solusi digital terhadap permasalahan pendidikan di Indonesia. Tim terdiri dari 3 siswa dengan 1 guru pembimbing. Teknologi yang digunakan bebas, namun harus open-source. Hadiah utama berupa beasiswa dan kesempatan magang.', 'Pak Nyoman Surya', NULL, NULL, '2026-05-05 14:14:08', '2026-05-10', '2026-05-12', 1),
 (5, 'Olimpiade Teknologi Informasi', 'TKJ', 'Olimpiade pengetahuan umum di bidang TI meliputi jaringan komputer, keamanan siber, cloud computing, dan sistem operasi. Terbuka untuk semua jurusan. Seleksi dilakukan secara bertahap: tingkat sekolah, kota, provinsi, hingga nasional.', 'Bu Putu Dewi', NULL, NULL, '2026-05-05 14:14:08', '2026-03-20', '2026-03-22', 1),
-(6, 'Kompetisi UI/UX Design Challenge', 'DKV', 'Tantangan desain antarmuka pengguna dengan studi kasus dari industri nyata. Peserta harus melakukan user research, membuat wireframe, high-fidelity prototype, dan melakukan usability testing. Menggunakan tools Figma atau Adobe XD.', 'Pak Made Sujana', NULL, NULL, '2026-05-05 14:14:08', '2026-06-01', '2026-06-10', 1),
-(10, 'aaaaa', 'DKV', 'a', NULL, NULL, NULL, '2026-05-27 03:38:30', '0001-01-01', '0001-01-01', 1);
+(6, 'Kompetisi UI/UX Design Challenge', 'DKV', 'Tantangan desain antarmuka pengguna dengan studi kasus dari industri nyata. Peserta harus melakukan user research, membuat wireframe, high-fidelity prototype, dan melakukan usability testing. Menggunakan tools Figma atau Adobe XD.', 'Pak Made Sujana', NULL, NULL, '2026-05-05 14:14:08', '2026-06-01', '2026-06-10', 1);
 
 -- --------------------------------------------------------
 
@@ -131,10 +130,7 @@ INSERT INTO `comp_external_links` (`id`, `address`, `title`, `linked_comp`) VALU
 (5, 'https://example.com/hackathon-rules', 'Peraturan & Ketentuan Hackathon', 4),
 (6, 'https://example.com/hackathon-register', 'Registrasi Tim Hackathon', 4),
 (7, 'https://example.com/olimpiade-ti-syllabus', 'Silabus Materi Olimpiade TI', 5),
-(13, 'https://example.com/festival-dkv-gallery', 'Galeri Karya Peserta Tahun Lalu', 3),
-(16, 'a', 'a', 10),
-(17, 'a', 'a', 10),
-(18, 'a', 'a', 10);
+(13, 'https://example.com/festival-dkv-gallery', 'Galeri Karya Peserta Tahun Lalu', 3);
 
 -- --------------------------------------------------------
 
@@ -149,15 +145,6 @@ CREATE TABLE `comp_registrations` (
   `registered_on` datetime DEFAULT current_timestamp(),
   `status` varchar(20) DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `comp_registrations`
---
-
-INSERT INTO `comp_registrations` (`id`, `student_nis`, `comp_id`, `registered_on`, `status`) VALUES
-(8, '530', 6, '2026-05-27 03:30:35', 'pending'),
-(9, '530', 4, '2026-05-27 03:41:51', 'pending'),
-(10, '530', 1, '2026-05-27 03:42:00', 'accepted');
 
 -- --------------------------------------------------------
 
@@ -230,7 +217,7 @@ CREATE TABLE `students_table` (
 --
 
 INSERT INTO `students_table` (`nis`, `full_name`, `att_number`, `class`, `acc_password`, `email`, `profile_pic_path`, `description`, `created_on`, `last_logged_on`) VALUES
-('530', 'Hugh Treeson III', 1, 'X RPL 1', '12345678', NULL, 'assets/images/profiles/pfp_530_1779799072.png', 'Siswa berprestasi di bidang pemrograman web dan database. Aktif dalam kegiatan ekstrakurikuler IT Club.', '2026-05-05 14:14:07', '2026-05-27 00:31:22'),
+('530', 'Hugh Treeson III', 1, 'X RPL 1', '12345678', NULL, NULL, 'Siswa berprestasi di bidang pemrograman web dan database. Aktif dalam kegiatan ekstrakurikuler IT Club.', '2026-05-05 14:14:07', '2026-05-28 10:45:17'),
 ('531', 'Gout Dat Drip', 2, 'X RPL 1', '12345678', NULL, NULL, '', '2026-05-05 14:14:07', NULL),
 ('532', 'Zorro Almond', 3, 'X RPL 1', '12345678', NULL, NULL, '', '2026-05-05 14:14:07', NULL),
 ('533', 'Troy Fuller', 4, 'X RPL 1', '12345678', NULL, NULL, '', '2026-05-05 14:14:07', NULL),
@@ -265,13 +252,6 @@ CREATE TABLE `student_achievements` (
   `notes` text DEFAULT NULL,
   `created_on` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `student_achievements`
---
-
-INSERT INTO `student_achievements` (`id`, `student_nis`, `comp_id`, `achievement_title`, `result`, `notes`, `created_on`) VALUES
-(5, '530', 6, 'Kompetisi UI/UX Design Challenge', 'juara_1', NULL, '2026-05-27 03:36:09');
 
 --
 -- Indexes for dumped tables
