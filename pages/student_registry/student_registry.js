@@ -27,7 +27,7 @@ function clientValidation() {
 
   student_data = [
     registryForm.nis.value, 
-    registryForm.name.value,
+    registryForm.full_name.value,
     registryForm.major.value,
     registryForm.class.value,
     registryForm.att_number.value,

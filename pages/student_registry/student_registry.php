@@ -10,6 +10,11 @@
   <body>
     <main>
       <h1>Tambahkan Siswa</h1>
+      <?php 
+        if (isset($_GET["error"])) {
+          echo '<p class="url-error">' . htmlspecialchars($_GET["error"]) . '</p>';
+        }
+      ?>
       <form id="registry_form" action="student_registry_validator.php" method="post">
         <fieldset>
           <legend><b>Data Siswa</b></legend>
@@ -32,7 +37,7 @@
             <select name="class" id="class">
               <option value="">-- Pilih Kelas --</option>
               <option class="class_options RPL" value="X RPL 1">X RPL 1</option>
-              <option class="class_options RPL" value="X RPL 1">X RPL 2</option>
+              <option class="class_options RPL" value="X RPL 2">X RPL 2</option>
               <option class="class_options DKV" value="X DKV 1">X DKV 1</option>
               <option class="class_options DKV" value="X DKV 2">X DKV 2</option>
               <option class="class_options TKJ" value="X TKJ 1">X TKJ 1</option>
@@ -59,6 +64,20 @@
         </fieldset>
       </form>  
     </main>
+    <style>
+      .url-error {
+        text-align: center;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--error);
+        background: var(--error-bg);
+        border: 1px solid var(--error-border);
+        margin-bottom: 8px;
+        animation: shakeError 0.35s ease;
+      }
+    </style>
   </body>
 
   <script src="student_registry.js" defer></script>

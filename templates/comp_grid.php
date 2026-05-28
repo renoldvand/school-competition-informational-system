@@ -6,7 +6,8 @@
     $name = "Perlombaan Tak Ternama",
     $thumbnail = "../../assets/images/default_comp_card.png",
     $major = "???",
-    $opened = true
+    $opened = true,
+    $id = null
   ) {
     $status_message = "Terbuka";
     $status_class = "opened";
@@ -15,8 +16,13 @@
       $status_class = "closed";
     }
     
+    $href = "../comp_post/comp_post.php";
+    if ($id) {
+      $href .= "?id=" . urlencode($id);
+    }
+
     $html = <<<HTML
-      <a class="comp_card" href="../comp_post/comp_post.php">
+      <a class="comp_card" href="$href">
         <figure>
           <img src="$thumbnail" alt="thumbnail.png">
           <figcaption id="name"><b>$name</b></figcaption>
@@ -35,12 +41,15 @@
     $cards = "";
     
     foreach ($comps as $comp) {
-      $cards .= comp_card_html($comp["name"], $comp["thumbnail"], $comp["major"], $comp["opened"]);
+      $cards .= comp_card_html(
+        $comp["name"], $comp["thumbnail"], $comp["major"], $comp["opened"], 
+        $comp["id"] ?? null
+      );
     }
     // Tes Kartu
-    $cards .= comp_card_html();
-    $cards .= comp_card_html();
-    $cards .= comp_card_html();
+    // $cards .= comp_card_html();
+    // $cards .= comp_card_html();
+    // $cards .= comp_card_html();
 
     // Lihat skrip Top Bar atau Bottom Bar untuk penjelasan Heredoc String.
     $html = <<<HTML
@@ -170,21 +179,12 @@
           font-weight: 700;
           letter-spacing: 0.8px;
           text-transform: uppercase;
-          text-align: center;
-          padding: 0 10px 14px;
-          width: 100%;
-          margin-right: 0;
-          align-self: end;
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
-        }
-
-        .comp_card .status span,
-        .comp_card .status {
-          display: inline-block;
-          padding: 4px 10px;
+          padding: 4px 12px;
           border-radius: 20px;
+          width: fit-content;
+          margin: 0 10px 14px auto;
+          align-self: end;
+          justify-self: end;
         }
 
         /* Status: Terbuka */

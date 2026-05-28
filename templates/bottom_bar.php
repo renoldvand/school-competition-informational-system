@@ -22,7 +22,9 @@
         <a id="fb_icon" href="http://facebook.com/smknegeri1denpasar">
           <img src="../../assets/images/social_icons/fb.png" alt="facebook_icon.png">
         </a>
-
+        <!-- <a id="admin_link" href="../admin_login/admin_login.php" title="Panel Admin">
+          <img src="../../assets/images/social_icons/globe.png" alt="admin.png" style="filter:grayscale(1) brightness(0.5);">
+        </a> -->
         <p>$account_message</p>
 
         <a id="yt_icon" href="https://youtube.com/@smkn1denpasar">
@@ -113,6 +115,12 @@
 
         footer #ig_icon {
           background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        footer #admin_link {
+          background-color: rgba(255,255,255,0.08);
+        }
+        footer #admin_link:hover {
+          background-color: rgba(255,255,255,0.15);
         }
       </style>
     HTML;

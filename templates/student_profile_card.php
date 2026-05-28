@@ -24,7 +24,9 @@
     $major = "???",
     $profile_pic = "../../assets/images/default_pfp.jpg",
     $profile_description = "[Tidak ada deskripsi]",
+    $registered_comps = [],
     $joined_comps = [],
+    $achievements = [],
     $created_on = "??/??/??",
     $viewed_by_owner = true
   ) {
@@ -34,16 +36,34 @@
       $entries .= joined_comps_html($comp["name"], $comp["icon"]);
     }
 
-    // Tes Entri
-    $entries .= joined_comps_html("Tanding Catur Daerah Bali");
-    $entries .= joined_comps_html("Kontes Web Developer");
-    $entries .= joined_comps_html("Perlombaan Basket");
     
     $edit_profile_button = "";
     if ($viewed_by_owner) {
       $edit_profile_button = <<<HTML
         <a id="edit_profile" href="../student_profile_edit/student_profile_edit.php">Edit Profil</a> 
       HTML;
+    }
+
+    $empty_achievement = "";
+    if (empty($entries)) {
+      $empty_achievement = '<p class="empty-text">Belum ada pencapaian.</p>';
+    }
+
+    $reg_section = "";
+    if (!empty($registered_comps)) {
+      $reg_items = "";
+      foreach ($registered_comps as $rc) {
+        $status_cls = "";
+        $status_label = "";
+        if ($rc["status"] === "pending") { $status_cls = "reg-pending"; $status_label = "Pending"; }
+        elseif ($rc["status"] === "accepted") { $status_cls = "reg-accepted"; $status_label = "Diterima"; }
+        elseif ($rc["status"] === "rejected") { $status_cls = "reg-rejected"; $status_label = "Ditolak"; }
+        $reg_items .= '<a class="comp_entry" href="../comp_post/comp_post.php?id=' . $rc["comp_id"] . '">'
+          . '<p class="reg-comp-name">' . htmlspecialchars($rc["comp_title"]) . '</p>'
+          . '<span class="reg-badge-small ' . $status_cls . '">' . $status_label . '</span>'
+          . '</a>';
+      }
+      $reg_section = '<h3>Lomba yang Diikuti</h3><div id="comp_list">' . $reg_items . '</div>';
     }
 
     $html = <<<HTML
@@ -70,10 +90,12 @@
             <p id="description">$profile_description</p>
           </div>
         </section>
-        <h3>Mengikuti lomba</h3>
-        <div id="comp_list">
-          
+        <h3>Pencapaian</h3>
+        <div id="achievement_list">
+          $entries
+          $empty_achievement
         </div>
+        $reg_section
       </div>
     HTML;
 
@@ -278,6 +300,21 @@
           font-size: 0.88rem;
           font-weight: 500;
           color: var(--text);
+        }
+
+        #student_profile .empty-text {
+          padding:8px 28px;font-size:0.82rem;color:var(--text-muted);font-style:italic;
+        }
+        .reg-comp-name { font-size:0.88rem;font-weight:500;color:var(--text);flex:1; }
+        .reg-badge-small {
+          display:inline-block;padding:3px 8px;border-radius:12px;font-size:0.65rem;
+          font-weight:700;letter-spacing:0.3px;text-transform:uppercase;white-space:nowrap;
+        }
+        .reg-badge-small.reg-pending { background:rgba(230,185,74,0.15);color:#8a6000; }
+        .reg-badge-small.reg-accepted { background:rgba(34,139,34,0.1);color:var(--success); }
+        .reg-badge-small.reg-rejected { background:rgba(217,64,64,0.1);color:var(--danger); }
+        #student_profile #comp_list .comp_entry {
+          flex-wrap:wrap;gap:6px;
         }
       </style>
     HTML;

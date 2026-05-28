@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap");
+:root {
+  --navy: #0f2044;
+  --navy-mid: #1a3260;
+  --blue: #2a52a0;
+  --gold: #e6b94a;
+  --gold-light: #f5d98a;
+  --bg: #eceef4;
+  --white: #ffffff;
+  --text: #1a1f2e;
+  --text-muted: #5a6278;
+  --shadow-sm: 0 2px 8px rgba(15, 32, 68, 0.1);
+  --shadow-md: 0 6px 24px rgba(15, 32, 68, 0.14);
+  --radius: 14px;
+  --success: #1a6630;
+  --danger: #d94040;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  font-family: "DM Sans", sans-serif;
+  color: var(--text);
+}
+main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.notif-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(42, 82, 160, 0.06);
+  transition: box-shadow 0.18s;
+  border-left: 4px solid var(--blue);
+}
+.notif-card.unread {
+  border-left-color: var(--gold);
+  background: rgba(230, 185, 74, 0.03);
+}
+.notif-card:hover {
+  box-shadow: var(--shadow-md);
+}
+.notif-card .notif-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+.notif-card.unread .notif-type {
+  color: var(--gold);
+}
+.notif-card .notif-msg {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.notif-card .notif-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+.notif-card.registration_accepted {
+  border-left-color: var(--success);
+}
+.notif-card.registration_accepted .notif-type {
+  color: var(--success);
+}
+.notif-card.registration_rejected {
+  border-left-color: var(--danger);
+}
+.notif-card.registration_rejected .notif-type {
+  color: var(--danger);
+}
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.empty-state p {
+  font-size: 0.95rem;
+}
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.page-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
